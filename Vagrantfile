@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   # Share an additional folder to the guest VM. 
   # The first argument is the path on the host to the actual folder (everything in this folder). 
   # The second argument is the path on the guest where you mount the folder (must be an absolute path). 
-  config.vm.synced_folder ".", "/home/vagrant/", create: true, owner: cs50user, group: cs50user
+  config.vm.synced_folder ".", "/home/vagrant/csXXworking", create: true, owner: cs50user, group: cs50user
 
   # Provider-specific configuration so you can fine-tune the VM.
   config.vm.provider "virtualbox" do |vb|
