@@ -19,4 +19,3 @@ echo 'Creating your dev Virtual Machine for you - this will take a few minutes..
 # then setup a vagrant environment
 mkdir cs50vm && cd $_
 vagrant up
-vagrant ssh
