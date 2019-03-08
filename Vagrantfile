@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. 
   # You can search for boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/trusty32"
   config.vm.hostname = "mycs50.box"
   
   #
@@ -37,10 +37,10 @@ Vagrant.configure("2") do |config|
   # your network.
   # config.vm.network "public_network"
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
+  # Share an additional folder to the guest VM. 
+  # The first argument is the path on the host to the actual folder (a directory within this repo). 
+  # The second argument is the path on the guest to mount the folder (must be an absolute path). 
+  # (Optional third argument; create if it doesn't exist; assign owner/group).
   config.vm.synced_folder "./cs50host", "/home/vagrant/cs50guest", create: true, owner: cs50user, group: cs50user
 
   # Provider-specific configuration so you can fine-tune the VM.
@@ -57,9 +57,13 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script.
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update > /dev/null
+
+    apt-get install wget -y > /dev/null
     apt-get install git -y > /dev/null
     apt-get install gcc -y > /dev/null
     apt-get install valgrind -y > /dev/null
+
+    # if you want to run shell scripts, you can also reference those...
     /home/vagrant/cs50guest/setup.sh
 
     echo "All done! Now run: vagrant ssh"
