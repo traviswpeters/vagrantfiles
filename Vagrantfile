@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. 
   # You can search for boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/trusty32"
-  config.vm.hostname = "mycsXX.box"
+  config.vm.hostname = "csXXbox"
 
   # Share an additional folder to the guest VM. 
   # The first argument is the path on the host to the actual folder (everything in this folder). 
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
     apt-get install valgrind -y > /dev/null
 
     # if you want to run shell scripts, you can also reference those...
-    /home/vagrant/cs50guest/setup.sh
+    #/home/vagrant/cs50guest/setup.sh
 
     echo "All done! Now run: vagrant ssh"
   SHELL

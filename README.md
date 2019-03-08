@@ -14,6 +14,26 @@ To log into your VM, use vagrant's SSH command:
 vagrant ssh
 ```
 
+If you want to power your VM on or off, use:
+
+```
+vagrant up    # <<< starts the VM
+vagrant halt  # <<< stops the VM
+```
+
+If you mess up your VM... no worries! Run the following commands:
+
+```
+vagrant destroy  # <<< stop the VM, then delete the VM
+./bootstrap.sh   # <<< setup a fresh instance of your VM and re-run all provisioning
+```
+
+## Sharing Access to Files Between Host & Guest
+
+Currently, the VM is configured to create a shared folder between 
+the current directory on the **Host** (your machine) 
+and `/home/vagrant/csXXworking` on the **Guest** (your VM)
+
 I suggest creating a new repository for each new assignment, and cloning those into the csXXdev directory. 
 For example: 
 
