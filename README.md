@@ -39,19 +39,16 @@ For example:
 
 
 ```
-cs50xx/
-    Vagrantfile
-    bootstrap.sh
-    README.md
-    - a1
-    - a2
-    - a3
-    - a4
-    - a5
-    - a6
-    - tse
-    - yalnix
-    ...etc...
+csXXdev/
+|-- README.md
+|-- Vagrantfile
+|-- a1
+|-- a2
+|-- a3
+|-- bootstrap.sh
+|-- tiny-search-engine
+`-- yalnix
+...etc...
 ```
 
 Note that all files directly in cs50xx are made to be ignored (except for the files needed to maintain this environment)
