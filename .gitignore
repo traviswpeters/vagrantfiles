@@ -1,8 +1,8 @@
 # Ignore everything
-*
+#*
 
 # But not these files...
-!.gitignore
-!Vagrantfile
-!bootstrap.sh
-!README.md
+#!.gitignore
+#!Vagrantfile
+#!bootstrap.sh
+#!README.md
