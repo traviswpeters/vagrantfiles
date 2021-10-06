@@ -3,10 +3,11 @@
 
 Vagrant.configure("2") do |config|
   # A few different VMs...
-  # config.vm.box = "generic/fedora28"
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.box = "ubuntu/focal64"
+  # config.vm.box = "hashicorp/bionic64"
   #config.vm.box = "generic/ubuntu1804"
   #config.vm.box = "generic/trusty32"
+  # config.vm.box = "generic/fedora28"
 
   # X-forwarding
   # Thanks, https://computingforgeeks.com/how-to-enable-and-use-ssh-x11-forwarding-on-vagrant-instances/
@@ -28,10 +29,6 @@ Vagrant.configure("2") do |config|
 
   # here, I sync the current directory (".") on my host machine with the VM (which can be located at "/home/vagrant/path/to/stuff")
   config.vm.synced_folder ".", "/home/vagrant/projects"
-  # config.vm.synced_folder "/Users/twp/projects/class/msu-cs460-code", "/home/vagrant/code"
-  # config.vm.synced_folder "/Users/twp/projects/class/msu-cs460-2020-fall", "/home/vagrant/website"
-  # config.vm.synced_folder "/Users/twp/projects/class/admin-teaching/", "/home/vagrant/adminall"
-  # config.vm.synced_folder "/Users/twp/projects/class/admin-teaching/yalnix", "/home/vagrant/yalnix"
 
   # Use "File Provisioner" to upload a file or directory from the host machine to the guest machine.
   config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
@@ -45,29 +42,29 @@ Vagrant.configure("2") do |config|
 
     apt-get update
     apt-get upgrade -y
-    apt-get install autoconf -y
+    #apt-get install autoconf -y
 
     # make sure we have our manuals...
-    apt-get install man -y
-    apt-get install manpages-dev -y
-    apt-get install manpages-posix -y
-    apt-get install manpages-posix-dev -y
+    #apt-get install man -y
+    #apt-get install manpages-dev -y
+    #apt-get install manpages-posix -y
+    #apt-get install manpages-posix-dev -y
 
     # some useful installs
-    apt-get install vim -y  # editor
-    apt-get install git -y  # DVCS
-    apt-get install tree -y # enhanced commandline output
+    #apt-get install vim -y  # editor
+    #apt-get install git -y  # DVCS
+    #apt-get install tree -y # enhanced commandline output
 
     # installs for OS assignments
-    apt-get install gcc -y          # compiler
-    apt-get install gcc-multilib -y # multi architecture and 32-/64- bit support
-    apt-get install gdb -y          # debugger
-    apt-get install valgrind -y     # memory debugger
-    apt-get install xauth -y        # x11
-    apt-get install x11-apps -y     # e.g., xeyes, xclock
-    apt-get install imagemagick -y  # image tools
-    apt-get install ruby            # ruby and friends for scripts (e.g., grading scripts)
-    gem install bundler -v 2.0.1
+    #apt-get install gcc -y          # compiler
+    #apt-get install gcc-multilib -y # multi architecture and 32-/64- bit support
+    #apt-get install gdb -y          # debugger
+    #apt-get install valgrind -y     # memory debugger
+    #apt-get install xauth -y        # x11
+    #apt-get install x11-apps -y     # e.g., xeyes, xclock
+    #apt-get install imagemagick -y  # image tools
+    #apt-get install ruby            # ruby and friends for scripts (e.g., grading scripts)
+    #gem install bundler -v 2.0.1
 
     # Need this stuff...?
     # apt-get install xutils-dev
@@ -76,9 +73,9 @@ Vagrant.configure("2") do |config|
     ### other (silly) installs...
 
     # install TLDR (community driven man pages w/ practical examples)
-    sudo apt-get install nodejs npm
-    sudo npm install -g tldr
-    tldr --update
+    #sudo apt-get install nodejs npm
+    #sudo npm install -g tldr
+    #tldr --update
 
   SHELL
 
@@ -90,27 +87,27 @@ Vagrant.configure("2") do |config|
     # surpress login banner w/ motd
     touch ~/.hushlogin
 
-    ln -sf ~/adminall/cs460-2020-fall/ ~/admin
-
-    # add hook in bashrc to grab updates to cs460 customizations and apply them.
-    if ! grep -q 'cs460customizations' ~/.bashrc; then
-cat >> ~/.bashrc <<EOL
-
-# fetch the most up-to-date cs460 customizations
-curl -sS https://raw.githubusercontent.com/traviswpeters/cs460-code/master/cs460customizations -o .cs460customizations
-         
-# source our customizations
-if [ -f ~/.cs460customizations ]; then
-    source ~/.cs460customizations
-fi
-
-EOL
-    fi
-
   SHELL
 
   config.vm.provision "shell", inline: "echo All done! Now run: vagrant ssh"
 end
+
+### HOOKS ###
+
+# # add hook in bashrc to grab updates to cs460 customizations and apply them.
+# if ! grep -q 'cs460customizations' ~/.bashrc; then
+#   cat >> ~/.bashrc <<EOL
+  
+#   # fetch the most up-to-date cs460 customizations
+#   curl -sS https://raw.githubusercontent.com/traviswpeters/cs460-code/master/cs460customizations -o .cs460customizations
+            
+#   # source our customizations
+#   if [ -f ~/.cs460customizations ]; then
+#       source ~/.cs460customizations
+#   fi
+  
+#   EOL
+#       fi
 
 ### TIMEZONE ###
 # vagrant plugin install vagrant-vbguest

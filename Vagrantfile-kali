@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "kalilinux/rolling"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/home/vagrant/hacking"
+
+  # Use "File Provisioner" to upload a file or directory from the host machine to the guest machine.
+  config.vm.provision "file", source: "~/.gitconfig", destination: "/home/vagrant/.gitconfig"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+
+    # Customize the amount of memory on the VM:
+    #vb.memory = "1024"
+
+    # vb.check_guest_additions = false
+    vb.customize ['modifyvm', :id, '--name', 'Hack']
+    vb.customize ['modifyvm', :id, '--memory', 2048]
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"] 
+  end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    #apt-get install -y apache2
+
+    # make sure we have our manuals...
+    apt-get install man -y
+    apt-get install manpages-dev -y
+    apt-get install manpages-posix -y
+    apt-get install manpages-posix-dev -y
+  SHELL
+
+  # Non-root provisioning with a shell script.
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    echo 'Now doing non-root provisioning...'
+    whoami
+
+    # surpress login banner w/ motd
+    touch ~/.hushlogin
+
+    # projects
+    git clone https://github.com/wireghoul/graudit         # grep-ing in code / easy findings
+    git clone https://github.com/AlDanial/cloc             # count lines of code
+    git clone https://github.com/longld/peda.git           # PEDA - Python Exploit Development Assistance for GDB
+
+    git clone https://github.com/fkie-cad/cwe_checker      # scan for CWEs in binaries
+    git clone https://github.com/JusticeRage/Manalyze.git  # A static analyzer for PE executables.
+    git clone https://github.com/fkie-cad/FACT_core.git    # Firmware Analysis and Comparison Tool
+    git clone https://github.com/ReFirmLabs/binwalk.git    # Firmware Analysis Tool
+
+  SHELL
+end
