@@ -22,9 +22,9 @@ apt install tree -y
 apt install cloc -y       # assessments / source code summary
 apt install dos2unix -y
 apt install bat -y        # a (better) cat clone
-pip3 install semgrep -y   # For Ubuntu / Windows via WSL / Linux / macOS -> may need to disable Windows/WSL firewall?!?!? :-(
+pip3 install semgrep      # For Ubuntu / Windows via WSL / Linux / macOS -> may need to disable Windows/WSL firewall?!?!? :-(
 
 # binary aliases
-ln -s /usr/bin/python3 /usr/bin/python
-ln -s /usr/bin/batcat /usr/bin/bat
+ln -s /usr/bin/python3 /usr/bin/python 2> /dev/null
+ln -s /usr/bin/batcat /usr/bin/bat 2> /dev/null
 
