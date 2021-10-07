@@ -5,12 +5,16 @@ Vagrant.configure("2") do |config|
   # A few different VMs...
   config.vm.box = "ubuntu/focal64"
   # config.vm.box = "kalilinux/rolling"
+  # config.vm.box = "ubuntu/xenial64"
   # config.vm.box = "hashicorp/bionic64"
   # config.vm.box = "generic/ubuntu1804"
   # config.vm.box = "generic/trusty32"
   # config.vm.box = "generic/fedora28"
+  config.vm.box_check_update = false
 
   config.vm.hostname = "hackvm"
+  config.ssh.forward_agent = true
+  config.ssh.insert_key = false
 
   config.vm.provider 'virtualbox' do |vb|
     vb.gui = false
@@ -18,10 +22,9 @@ Vagrant.configure("2") do |config|
     vb.customize ['modifyvm', :id, '--name', 'HackVM']
     vb.customize ['modifyvm', :id, '--memory', 2048]
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+    # vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    # vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
   end
-
-  # Don't check for updates on every 'vagrant up'
-  config.vm.box_check_update = false
 
   # Network config
   # config.vm.network "forwarded_port", guest: 80, host: 8888
@@ -34,6 +37,8 @@ Vagrant.configure("2") do |config|
 
   # Use "File Provisioner" to upload a file or directory from the host machine to the guest machine.
   config.vm.provision "file", source: "~/.gitconfig", destination: "/home/vagrant/.gitconfig"
+  config.vm.provision "file", source: "~/.gitignore_global", destination: "/home/vagrant/.gitignore_global"
+  config.vm.provision "file", source: "~/.vimrc", destination: "/home/vagrant/.vimrc"
   config.vm.provision "file", source: "~/projects/vagrantfiles/colors.rc", destination: "/home/vagrant/.colors.rc"
 
   # Provisioning the VM with a shell script.
