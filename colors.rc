@@ -17,5 +17,6 @@ RESET="\[\e[0m\]"
 
 # IP address in PS1...
 IP=$(hostname -I | awk '{print $2}')
+# IP=$(curl -s ifconfig.me) # public IP; but requires network request
 export PS1="${RESET}[${CYAN}\u${PURPLE}@${CYAN}\h (${IP})${RESET}][${PURPLE}\w${RESET}]${GRAY}$ "
 
