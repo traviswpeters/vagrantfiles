@@ -1,4 +1,8 @@
-echo "Vagrant / Linux Setup... (`whoami`)"
+#
+# Thanks in part to @nnja: https://github.com/nnja/new-computer
+#
+
+echo "Linux Setup... (`whoami`)"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -29,4 +33,3 @@ pip3 install semgrep      # For Ubuntu / Windows via WSL / Linux / macOS -> may 
 # binary aliases
 ln -s /usr/bin/python3 /usr/bin/python 2> /dev/null
 ln -s /usr/bin/batcat /usr/bin/bat 2> /dev/null
-
