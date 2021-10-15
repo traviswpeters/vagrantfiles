@@ -29,6 +29,8 @@ touch ~/.hushlogin # no login banner w/ motd
 # git clone https://github.com/JusticeRage/Manalyze.git  # A static analyzer for PE executables.
 # git clone https://github.com/fkie-cad/FACT_core.git    # Firmware Analysis and Comparison Tool
 # git clone https://github.com/ReFirmLabs/binwalk.git    # Firmware Analysis Tool
+# git clone https://github.com/bridgecrewio/checkov      # Checkov is a static code analysis tool for infrastructure-as-code.
+# git clone https://github.com/samyk/samytools           # Samy Kamkar's CLI tools
 
 ### SETTINGS
 
