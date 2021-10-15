@@ -12,10 +12,6 @@ touch ~/.hushlogin # no login banner w/ motd
 
 # mkdir -p ~/projects && cd ~/projects
 
-[[ -s ~/projects/dotfiles/shell-aliases ]] && . ~/projects/dotfiles/shell-aliases
-[[ -s ~/projects/dotfiles/shell-functions ]] && . ~/projects/dotfiles/shell-functions
-[[ -s ~/projects/dotfiles/shell-variables ]] && . ~/projects/dotfiles/shell-variables
-
 ### PERSONAL/PROJECT/ENVIRONMENT REPOS
 # git clone git@github.com:traviswpeters/security.git
 # git clone git@github.com:traviswpeters/dotfiles.git
@@ -68,6 +64,7 @@ if ! grep -q '.colors.rc' ~/.bashrc; then
     echo '' >> ~/.bashrc
     echo '### CUSTOM BASHRC ADDITIONS ###' >> ~/.bashrc
     echo '. .colors.rc' >> ~/.bashrc
+    echo '[[ -s ~/projects/dotfiles/shell-defs.sh ]] && . ~/projects/dotfiles/shell-defs.sh' >> ~/.bashrc
 fi
 
 # customtagBEGIN="### [BEGIN] MY BASHRC CUSTOMIZATION ###"
@@ -87,4 +84,4 @@ fi
 # fi
 
 # Permanently update PATH if this system/config doesn't currently have XYZ in PATH already
-[[ ":$PATH:" != *":/home/vagrant/.local/bin:"* ]] && echo export PATH="${PATH}:/home/vagrant/.local/bin" >> ~/.bashrc
+# [[ ":$PATH:" != *":/home/vagrant/.local/bin:"* ]] && echo export PATH="${PATH}:/home/vagrant/.local/bin" >> ~/.bashrc

@@ -27,9 +27,10 @@ apt install cloc -y       # assessments / source code summary
 apt install dos2unix -y
 apt install bat -y        # a (better) cat clone
 apt install nmap -y       # network scanning tool
+apt install wireless-tools
 
 pip3 install semgrep      # For Ubuntu / Windows via WSL / Linux / macOS -> may need to disable Windows/WSL firewall?!?!? :-(
 
 # binary aliases
-ln -s /usr/bin/python3 /usr/bin/python 2> /dev/null
-ln -s /usr/bin/batcat /usr/bin/bat 2> /dev/null
+ln -fs /usr/bin/python3 /usr/bin/python 2> /dev/null
+ln -fs /usr/bin/batcat /usr/bin/bat 2> /dev/null

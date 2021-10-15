@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider 'virtualbox' do |vb|
     vb.gui = false
     vb.check_guest_additions = false
-    vb.customize ['modifyvm', :id, '--name', 'HackVM']
+    vb.customize ['modifyvm', :id, '--name', 'hackvm']
     vb.customize ['modifyvm', :id, '--memory', 2048]
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
     # vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
@@ -36,10 +36,21 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./work", "/home/vagrant/work"
 
   # Use "File Provisioner" to upload a file or directory from the host machine to the guest machine.
-  config.vm.provision "file", source: "~/.gitconfig", destination: "/home/vagrant/.gitconfig"
-  config.vm.provision "file", source: "~/.gitignore_global", destination: "/home/vagrant/.gitignore_global"
-  config.vm.provision "file", source: "~/.vimrc", destination: "/home/vagrant/.vimrc"
+
+  ### config files
+  config.vm.provision "file", source: "~/projects/dotfiles/.gitconfig-linux", destination: "/home/vagrant/.gitconfig"
+  config.vm.provision "file", source: "~/projects/dotfiles/.gitignore_global", destination: "/home/vagrant/.gitignore_global"
+  config.vm.provision "file", source: "~/projects/dotfiles/.vimrc", destination: "/home/vagrant/.vimrc"
   config.vm.provision "file", source: "~/projects/vagrantfiles/colors.rc", destination: "/home/vagrant/.colors.rc"
+  ### ssh keys
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_includebot", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_includebot.pub", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_rsa_biggie", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_rsa_biggie.pub", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_incsectravis", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_incsectravis.pub", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_rwx_github", destination: "/home/vagrant/.ssh/"
+  config.vm.provision "file", source: "~/.ssh/id_ed25519_rwx_github.pub", destination: "/home/vagrant/.ssh/"
 
   # Provisioning the VM with a shell script.
   config.vm.provision "shell", path: "~/projects/vagrantfiles/setup-linux.sh"
