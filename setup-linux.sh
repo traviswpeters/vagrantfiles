@@ -22,7 +22,6 @@ apt install net-tools -y
 apt install vim -y
 apt install git -y
 apt install tree -y       # enhanced commandline output
-apt install tree -y
 apt install cloc -y       # assessments / source code summary
 apt install dos2unix -y
 apt install bat -y        # a (better) cat clone
