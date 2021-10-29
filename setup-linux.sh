@@ -27,6 +27,7 @@ apt install dos2unix -y
 apt install bat -y        # a (better) cat clone
 apt install nmap -y       # network scanning tool
 apt install wireless-tools
+apt install npm -y
 
 pip3 install semgrep      # For Ubuntu / Windows via WSL / Linux / macOS -> may need to disable Windows/WSL firewall?!?!? :-(
 

@@ -32,6 +32,7 @@ touch ~/.hushlogin # no login banner w/ motd
 # git clone https://github.com/bridgecrewio/checkov      # Checkov is a static code analysis tool for infrastructure-as-code.
 # git clone https://github.com/samyk/samytools           # Samy Kamkar's CLI tools
 # git clone https://github.com/0xInfection/XSRFProbe     # XSRF audit/exploitation tool
+# git clone https://github.com/APIs-guru/graphql-voyager # GraphQL Visualization Tool
 
 ### SETTINGS
 
